@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko MAS KERITING</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <style>
+    .chat-container {
+      max-width: 600px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .chat-box {
+      max-height: 300px;
+      overflow-y: scroll;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    .chat-message {
+      margin-bottom: 10px;
+    }
+
+    .chat-message .user {
+      font-weight: bold;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 10px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .chat-input button {
+      padding: 8px 16px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .chat-input button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Toko MAS KERITING</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="#products">Produk</a></li>
+          <li><a href="#promo">Promo</a></li>
+          <li><a href="cart.html">Keranjang</a></li>
+          <li><a href="#about">Tentang Kami</a></li>
+          <li><a href="login.html" class="active">Masuk/Daftar</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+      <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Cari produk...">
+        <button onclick="searchProduct()">Cari</button>
+      </div>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <h2>Selamat Datang di Toko MAS KERITING</h2>
+    <p>Belanja mudah, murah, dan terpercaya!</p>
+    <a href="#products" class="btn">Jelajahi Produk</a>
+  </section>
+  
+  <main>
+    <div class="container chat-container">
+      <h2>Chat dengan Penjual</h2>
+      <div class="chat-box" id="chatBox">
+        <!-- Pesan akan ditampilkan di sini -->
+      </div>
+      <div class="chat-input">
+        <input type="text" id="messageInput" placeholder="Tulis pesan...">
+        <button onclick="sendMessage()">Kirim</button>
+      </div>
+      <div style="margin-top: 20px; text-align: center;">
+        <a href="https://wa.me/6282320673674?text=Halo%20saya%20ingin%20bertanya%20tentang%20produk%20Anda" target="_blank" class="whatsapp-button">
+          Hubungi via WhatsApp
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <main>
+    <div class="container">
+      <h2>Masuk atau Daftar</h2>
+      <form id="loginForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Masukkan email Anda" required>
+        
+        <label for="password">Kata Sandi:</label>
+        <input type="password" id="password" placeholder="Masukkan kata sandi Anda" required>
+        
+        <button type="submit" class="btn">Masuk</button>
+        <p>Belum punya akun? <a href="#register" onclick="showRegister()">Daftar di sini</a>.</p>
+      </form>
+
+      <form id="registerForm" style="display:none;">
+        <label for="newEmail">Email:</label>
+        <input type="email" id="newEmail" placeholder="Masukkan email Anda" required>
+        
+        <label for="newPassword">Kata Sandi:</label>
+        <input type="password" id="newPassword" placeholder="Masukkan kata sandi Anda" required>
+        
+        <label for="confirmPassword">Konfirmasi Kata Sandi:</label>
+        <input type="password" id="confirmPassword" placeholder="Ulangi kata sandi Anda" required>
+        
+        <button type="submit" class="btn">Daftar</button>
+        <p>Sudah punya akun? <a href="#login" onclick="showLogin()">Masuk di sini</a>.</p>
+      </form>
+    </div>
+  </main>
+
+  <main>
+    <div class="container">
+      <h2>Checkout</h2>
+      <form>
+        <label for="name">Nama Penerima:</label>
+        <input type="text" id="name" placeholder="Masukkan nama penerima" required>
+
+        <label for="address">Alamat Pengiriman:</label>
+        <textarea id="address" placeholder="Masukkan alamat lengkap" required></textarea>
+
+        <label for="payment">Metode Pembayaran:</label>
+        <select id="payment" required>
+          <option value="transfer">Transfer Bank</option>
+          <option value="cod">Bayar di Tempat (COD)</option>
+        </select>
+
+        <button type="submit" class="btn">Bayar Sekarang</button>
+      </form>
+    </div>
+  </main>
+
+
+  <section id="promo">
+    <div class="container">
+      <h2>Promo Terbaru</h2>
+      <div class="promo-slider">
+        <div class="slide">
+          <img src="promo1.jpg" alt="Promo 1">
+        </div>
+        <div class="slide">
+          <img src="promo2.jpg" alt="Promo 2">
+        </div>
+        <div class="slide">
+          <img src="promo3.jpg" alt="Promo 3">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="container">
+      <h2>Produk Kami</h2>
+      <div class="filters">
+        <select id="categoryFilter" onchange="filterByCategory()">
+          <option value="all">Semua Kategori</option>
+          <option value="elektronik">Elektronik</option>
+          <option value="fashion">Fashion</option>
+          <option value="makanan">Makanan</option>
+        </select>
+      </div>
+      <div id="productGrid" class="product-grid">
+        <div class="product" data-category="elektronik">
+          <img src="produk1.jpg" alt="Produk 1">
+          <h3>Produk Elektronik 1</h3>
+          <p>Rp50.000</p>
+          <button class="btn" onclick="addToCart('Produk Elektronik 1', 50000)">Tambah ke Keranjang</button>
+        </div>
+        <div class="product" data-category="fashion">
+          <img src="produk2.jpg" alt="Produk 2">
+          <h3>Produk Fashion 1</h3>
+          <p>Rp75.000</p>
+          <button class="btn" onclick="addToCart('Produk Fashion 1', 75000)">Tambah ke Keranjang</button>
+        </div>
+        <div class="product" data-category="makanan">
+          <img src="produk3.jpg" alt="Produk 3">
+          <h3>Produk Makanan 1</h3>
+          <p>Rp100.000</p>
+          <button class="btn" onclick="addToCart('Produk Makanan 1', 100000)">Tambah ke Keranjang</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="about">
+    <div class="container">
+      <h2>Tentang Kami</h2>
+      <p>Toko MAS KERITING adalah toko online terpercaya yang menyediakan berbagai produk berkualitas dengan harga terjangkau.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Kontak Kami</h2>
+      <p>Hubungi kami melalui email di <a href="mailto:rzq.zidan00@gmail.com">rzq.zidan00@gmail.com</a> atau melalui telepon di 0823-2067-3674.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Toko MAS KERITING. Semua hak cipta dilindungi.</p>
+    </div>
+  </footer>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+    const messageInput = document.getElementById('messageInput');
+
+    function sendMessage() {
+      const message = messageInput.value.trim();
+
+      if (message) {
+        // Tambahkan pesan pengguna
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('chat-message');
+        userMessage.innerHTML = `<span class="user">Anda: </span>${message}`;
+        chatBox.appendChild(userMessage);
+
+        // Simulasi balasan penjual
+        setTimeout(() => {
+          const sellerMessage = document.createElement('div');
+          sellerMessage.classList.add('chat-message');
+          sellerMessage.innerHTML = `<span class="user">Penjual: </span>Terima kasih, pesan Anda telah diterima!`;
+          chatBox.appendChild(sellerMessage);
+
+          // Scroll ke pesan terbaru
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+
+        // Bersihkan input
+        messageInput.value = '';
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    }
+
+  <script>
+    function showRegister() {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("registerForm").style.display = "block";
+    }
+
+    function showLogin() {
+      document.getElementById("registerForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
